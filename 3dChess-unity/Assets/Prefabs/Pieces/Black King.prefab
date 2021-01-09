@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7297159225394534808}
   - component: {fileID: 7297159225393541494}
   - component: {fileID: 7297159225397617300}
+  - component: {fileID: 7617151607757899736}
   m_Layer: 0
   m_Name: Black King
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: a1edea9a41e71514f94a737abaf1410c, type: 3}
+--- !u!114 &7617151607757899736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7297159225395463092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e53464d8d479984580dad451c4ecee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 0

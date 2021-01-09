@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class BoardManager : MonoBehaviour
 {
+        public Chessman[,] Chessmans{set;get;}
+        private Chessman selectedChessman;
+
         private const float TILE_SIZE = 1.0f;
         private const float TILE_OFFSET = 0.5f;
 
@@ -43,10 +46,11 @@ public class BoardManager : MonoBehaviour
             }
         }
 
-        private void SpawnChessman(int index, Vector3 position)
+        private void SpawnChessman(int index, int x, int y)
         {
-            GameObject go = Instantiate(chessmanPrefabs[index], position, Quaternion.identity) as GameObject;
+            GameObject go = Instantiate(chessmanPrefabs[index], GetTileCenter(x,y), Quaternion.identity) as GameObject;
             go.transform.SetParent(transform);
+            Chessmans[x,y] = go.GetComponent<Chessman>();
             activeChessman.Add(go);
 
         }
@@ -54,45 +58,46 @@ public class BoardManager : MonoBehaviour
         private void SpawnAllChessmans()
         {
             activeChessman = new List<GameObject>();
+            Chessmans = new Chessman[8,8];
 
             //Spawn the white team
             //King
-            SpawnChessman (0, GetTileCenter(4,0));
+            SpawnChessman (0,4,0);
             //Queen
-            SpawnChessman (1, GetTileCenter(3,0));
+            SpawnChessman (1,3,0);
             //Rooks
-            SpawnChessman (2, GetTileCenter(0,0));
-            SpawnChessman (2, GetTileCenter(7,0));
+            SpawnChessman (2,0,0);
+            SpawnChessman (2,7,0);
             //Bishop
-            SpawnChessman (3, GetTileCenter(2,0));
-            SpawnChessman (3, GetTileCenter(5,0));
+            SpawnChessman (3,2,0);
+            SpawnChessman (3,5,0);
             //Knights
-            SpawnChessman (4, GetTileCenter(1,0));
-            SpawnChessman (4, GetTileCenter(6,0));
+            SpawnChessman (4,1,0);
+            SpawnChessman (4,6,0);
             //Pawns
             for (int i = 0; i < 8; i++)
             {
-                SpawnChessman (5, GetTileCenter(i,1));
+                SpawnChessman (5,i,1);
             }
 
             //Spawn the black team
             //King
-            SpawnChessman (6, GetTileCenter(4,7));
+            SpawnChessman (6,4,7);
             //Queen
-            SpawnChessman (7, GetTileCenter(3,7));
+            SpawnChessman (7,3,7);
             //Rooks
-            SpawnChessman (8, GetTileCenter(0,7));
-            SpawnChessman (8, GetTileCenter(7,7));
+            SpawnChessman (8,0,7);
+            SpawnChessman (8,7,7);
             //Bishop
-            SpawnChessman (9, GetTileCenter(2,7));
-            SpawnChessman (9, GetTileCenter(5,7));
+            SpawnChessman (9,2,7);
+            SpawnChessman (9,5,7);
             //Knights
-            SpawnChessman (10, GetTileCenter(1,7));
-            SpawnChessman (10, GetTileCenter(6,7));
+            SpawnChessman (10,1,7);
+            SpawnChessman (10,6,7);
             //Pawns
             for (int i = 0; i < 8; i++)
             {
-                SpawnChessman (11, GetTileCenter(i,6));
+                SpawnChessman (11,i,6);
             }
         }
 

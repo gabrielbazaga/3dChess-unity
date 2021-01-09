@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7607148818209880618}
   - component: {fileID: 7607148818210496236}
   - component: {fileID: 7607148818206735532}
+  - component: {fileID: -6031517625224875573}
   m_Layer: 0
   m_Name: White Bishop
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 1e1130c2d0732f44eb82b057a9dcf58b, type: 3}
+--- !u!114 &-6031517625224875573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7607148818208828398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2f3319cb0f5e9543b8d9dcafb28b264, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1

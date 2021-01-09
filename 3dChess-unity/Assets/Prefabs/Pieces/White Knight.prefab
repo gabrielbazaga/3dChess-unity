@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6944215217445598870}
   - component: {fileID: 6944215217444541164}
   - component: {fileID: 6944215217448787904}
+  - component: {fileID: 8912912453967966313}
   m_Layer: 0
   m_Name: White Knight
   m_TagString: Untagged
@@ -96,3 +97,16 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 69faab6ae9c00a848a82d036ac8c75d4, type: 3}
+--- !u!114 &8912912453967966313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6944215217442534852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76defca229e887149ace3696ac54c5b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isWhite: 1
