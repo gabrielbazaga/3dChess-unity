@@ -28,17 +28,20 @@ public class BoardManager : MonoBehaviour
         UpdateSelection();
         DrawChessBoard();
 
-        if(Input.GetMouseButton(0))
+        if(Input.GetMouseButtonDown(0))
         {
-            if (selectedChessman == null)
+            if(selectionX >= 0 && selectionY >= 0)
             {
-                //Select the chessman
-                SelectChessman(selectionX, selectionY);
-            }
-            else
-            {
-                // Move the chessman
-                MoveChessman(selectionX, selectionY);
+                if (selectedChessman == null)
+                {
+                    //Select the chessman
+                    SelectChessman(selectionX, selectionY);
+                }
+                else
+                {
+                    // Move the chessman
+                    MoveChessman(selectionX, selectionY);
+                }
             }
         }
     }
@@ -55,8 +58,13 @@ public class BoardManager : MonoBehaviour
     {
         if(selectedChessman.PossibleMove(x,y))
         {
-            
+            Chessmans [selectedChessman.CurrentX, selectedChessman.CurrentY] = null;
+            selectedChessman.transform.position = GetTileCenter(x,y);
+            Chessmans [x,y] = selectedChessman;
+            isWhiteTurn = !isWhiteTurn;
         }
+
+        selectedChessman = null;
     }
 
 
