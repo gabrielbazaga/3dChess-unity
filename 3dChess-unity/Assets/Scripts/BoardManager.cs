@@ -23,6 +23,7 @@ public class BoardManager : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         SpawnAllChessmans();
     }
 
@@ -30,7 +31,8 @@ public class BoardManager : MonoBehaviour
     {
         UpdateSelection();
         DrawChessBoard();
-
+        //Debug.Log(selectionX + " " + selectionY);
+        
         if(Input.GetMouseButtonDown(0))
         {
             if(selectionX >= 0 && selectionY >= 0)
@@ -64,6 +66,21 @@ public class BoardManager : MonoBehaviour
     {
         if(allowedMoves[x,y] == true)
         {
+            Chessman c = Chessmans [x,y];
+
+            if(c != null && c.isWhite != isWhiteTurn)
+            {
+                //Capture a piece
+                //If it is the king
+                if(c.GetType() == typeof(King))
+                {
+                    //End the game
+                    return;
+                }
+                activeChessman.Remove(c.gameObject);
+                Destroy(c.gameObject);
+            }
+
             Chessmans [selectedChessman.CurrentX, selectedChessman.CurrentY] = null;
             selectedChessman.transform.position = GetTileCenter(x,y);
             selectedChessman.SetPosition(x,y);
@@ -84,13 +101,14 @@ public class BoardManager : MonoBehaviour
 
             if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hit, 25.0f, LayerMask.GetMask("ChessPlane")))
             {
-               selectionX = (int) hit.point.x;
-               selectionY = (int) hit.point.z;
+                //Debug.Log(hit.point);
+                selectionX = (int) hit.point.x;
+                selectionY = (int) hit.point.z;
             }
             else
             {
-               selectionX = -1;
-               selectionY = -1; 
+                selectionX = -1;
+                selectionY = -1; 
             }
         }
 
