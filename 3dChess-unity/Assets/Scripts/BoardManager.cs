@@ -88,7 +88,6 @@ public class BoardManager : MonoBehaviour
             isWhiteTurn = !isWhiteTurn;
         }
         BoardHightlights.Instance.HideHighlights();
-        //SelectChessman(selectionX,selectionY);
         selectedChessman = null;
     }
 
