@@ -84,10 +84,8 @@ public class Pawn : Chessman
                 c2 = BoardManager.Instance.Chessmans[CurrentX,CurrentY-2];
                 if(c == null & c2 == null) r[CurrentX,CurrentY-2] = true;
             }
-        }
-        
+        }       
 
         return r;
     }
-
 }

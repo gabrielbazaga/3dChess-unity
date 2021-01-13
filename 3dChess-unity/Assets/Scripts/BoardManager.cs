@@ -31,7 +31,7 @@ public class BoardManager : MonoBehaviour
     {
         UpdateSelection();
         DrawChessBoard();
-        //Debug.Log(selectionX + " " + selectionY);
+        Debug.Log(selectionX + " " + selectionY);
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -88,6 +88,7 @@ public class BoardManager : MonoBehaviour
             isWhiteTurn = !isWhiteTurn;
         }
         BoardHightlights.Instance.HideHighlights();
+        //SelectChessman(selectionX,selectionY);
         selectedChessman = null;
     }
 
