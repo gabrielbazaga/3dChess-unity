@@ -31,7 +31,10 @@ public class BoardManager : MonoBehaviour
     {
         UpdateSelection();
         DrawChessBoard();
-        Debug.Log(selectionX + " " + selectionY);
+
+        // Use this Debug to show console what coordenates(x,y) your mouse is pointing
+        //Debug.Log(selectionX + " " + selectionY);
+        
         
         if(Input.GetMouseButtonDown(0))
         {
@@ -56,8 +59,14 @@ public class BoardManager : MonoBehaviour
         if(Chessmans[x,y] == null) return;
         if(Chessmans[x,y].isWhite != isWhiteTurn) return;
 
+       // bool hasAtLeastOneMove = false;
+
         allowedMoves = Chessmans[x,y].PossibleMove();
         selectedChessman = Chessmans[x,y];
+      /*  for (int i = 0; i < 8; i++)
+            for(int j = 0; j < 8; j++)
+                if (allowedMoves[i,j])
+                    hasAtLeastOneMove = true; */
 
         BoardHightlights.Instance.HighlightAllowedMoves(allowedMoves);
     }
@@ -74,7 +83,7 @@ public class BoardManager : MonoBehaviour
                 //If it is the king
                 if(c.GetType() == typeof(King))
                 {
-                    //End the game
+                    EndGame();
                     return;
                 }
                 activeChessman.Remove(c.gameObject);
@@ -205,5 +214,20 @@ public class BoardManager : MonoBehaviour
                 Vector3.forward * selectionY + Vector3.right * (1+selectionX)
             );
         }
+    }
+
+    private void EndGame()
+    {
+        if(isWhiteTurn)
+            Debug.Log("White team wins");
+        else
+            Debug.Log("Black team wins");
+        foreach (GameObject go in activeChessman)
+            Destroy (go);
+
+        isWhiteTurn = true;
+        BoardHightlights.Instance.HideHighlights();
+        SpawnAllChessmans();
+        
     }
 }
