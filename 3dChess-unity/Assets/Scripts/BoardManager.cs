@@ -19,7 +19,11 @@ public class BoardManager : MonoBehaviour
     public List<GameObject> chessmanPrefabs;
     private List<GameObject> activeChessman;
 
+    private Material previousMat;
+    public Material selectedMat;
+
     public bool isWhiteTurn = true;
+    private bool hasAtLeastOneMove = false;
 
     private void Start()
     {
@@ -59,15 +63,22 @@ public class BoardManager : MonoBehaviour
         if(Chessmans[x,y] == null) return;
         if(Chessmans[x,y].isWhite != isWhiteTurn) return;
 
-       // bool hasAtLeastOneMove = false;
+        bool b = hasAtLeastOneMove;
 
         allowedMoves = Chessmans[x,y].PossibleMove();
-        selectedChessman = Chessmans[x,y];
-      /*  for (int i = 0; i < 8; i++)
-            for(int j = 0; j < 8; j++)
-                if (allowedMoves[i,j])
-                    hasAtLeastOneMove = true; */
 
+        for (int i = 0; i < 8; i++)
+        {   for(int j = 0; j < 8; j++)
+            {   if (allowedMoves[i,j])
+                {    
+                    b = true; 
+                }      
+            }    
+        }
+
+        if(!b) return;
+
+        selectedChessman = Chessmans[x,y];
         BoardHightlights.Instance.HighlightAllowedMoves(allowedMoves);
     }
 
