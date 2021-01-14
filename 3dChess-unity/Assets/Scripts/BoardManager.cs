@@ -79,6 +79,10 @@ public class BoardManager : MonoBehaviour
         if(!b) return;
 
         selectedChessman = Chessmans[x,y];
+        previousMat = selectedChessman.GetComponent<MeshRenderer>().material;
+        selectedMat.mainTexture = previousMat.mainTexture;
+        selectedChessman.GetComponent<MeshRenderer>().material = selectedMat;
+
         BoardHightlights.Instance.HighlightAllowedMoves(allowedMoves);
     }
 
@@ -107,6 +111,8 @@ public class BoardManager : MonoBehaviour
             Chessmans [x,y] = selectedChessman;
             isWhiteTurn = !isWhiteTurn;
         }
+
+        selectedChessman.GetComponent<MeshRenderer>().material = previousMat;
         BoardHightlights.Instance.HideHighlights();
         selectedChessman = null;
     }
