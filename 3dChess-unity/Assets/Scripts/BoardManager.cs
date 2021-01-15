@@ -22,6 +22,8 @@ public class BoardManager : MonoBehaviour
     private Material previousMat;
     public Material selectedMat;
 
+    public int[] EnPassantMove{set;get;}
+
     public bool isWhiteTurn = true;
     private bool hasAtLeastOneMove = false;
 
@@ -104,6 +106,38 @@ public class BoardManager : MonoBehaviour
                 activeChessman.Remove(c.gameObject);
                 Destroy(c.gameObject);
             }
+            if(x == EnPassantMove[0] && y == EnPassantMove[1])
+            {
+                if(isWhiteTurn)
+                {
+                    c = Chessmans [x,y-1];
+                }
+                else
+                {
+                    c = Chessmans [x,y+1];
+                }
+                activeChessman.Remove(c.gameObject);
+                Destroy(c.gameObject);
+            }
+            EnPassantMove[0] = -1;
+            EnPassantMove[1] = -1;
+            if(selectedChessman.GetType() == typeof(Pawn))
+            {
+                if(selectedChessman.CurrentY == 1 && y == 3)
+                {
+
+                    EnPassantMove[0] = x;
+                    EnPassantMove[1] = y - 1;
+                } else
+                {
+                    if(selectedChessman.CurrentY == 6 && y == 4)
+                    {
+
+                        EnPassantMove[0] = x;
+                        EnPassantMove[1] = y + 1;                 
+                    }   
+               }
+            }
 
             Chessmans [selectedChessman.CurrentX, selectedChessman.CurrentY] = null;
             selectedChessman.transform.position = GetTileCenter(x,y);
@@ -152,6 +186,7 @@ public class BoardManager : MonoBehaviour
     {
         activeChessman = new List<GameObject>();
         Chessmans = new Chessman[8,8];
+        EnPassantMove = new int [2]{-1,-1};
 
         //Spawn the white team
         //King
