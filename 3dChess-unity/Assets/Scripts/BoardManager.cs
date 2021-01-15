@@ -106,6 +106,7 @@ public class BoardManager : MonoBehaviour
                 activeChessman.Remove(c.gameObject);
                 Destroy(c.gameObject);
             }
+
             if(x == EnPassantMove[0] && y == EnPassantMove[1])
             {
                 if(isWhiteTurn)
@@ -123,6 +124,20 @@ public class BoardManager : MonoBehaviour
             EnPassantMove[1] = -1;
             if(selectedChessman.GetType() == typeof(Pawn))
             {
+                if (y== 7)
+                {
+                    activeChessman.Remove(selectedChessman.gameObject);
+                    Destroy(selectedChessman.gameObject);
+                    SpawnChessman (1,x,y);
+                    selectedChessman = Chessmans[x,y];
+                }
+                else if (y== 0)
+                {
+                    activeChessman.Remove(selectedChessman.gameObject);
+                    Destroy(selectedChessman.gameObject);
+                    SpawnChessman (7,x,y);
+                    selectedChessman = Chessmans[x,y];
+                }
                 if(selectedChessman.CurrentY == 1 && y == 3)
                 {
 
